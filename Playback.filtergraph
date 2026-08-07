@@ -31,7 +31,7 @@
       </OUTPUTS>
     </LAYOUT>
   </FILTER>
-  <FILTER uid="3" x="0.5" y="0.9" useARA="0">
+  <FILTER uid="3" x="0.32875" y="0.8790983606557377" useARA="0">
     <PLUGIN name="Audio Output" descriptiveName="" format="Internal" category="I/O devices"
             manufacturer="JUCE" version="1.0" file="" uniqueId="724248cb"
             isInstrument="0" fileTime="0" infoUpdateTime="0" numInputs="4"
@@ -46,7 +46,7 @@
       </OUTPUTS>
     </LAYOUT>
   </FILTER>
-  <FILTER uid="4" x="0.25" y="0.9" useARA="0">
+  <FILTER uid="4" x="0.11" y="0.8811475409836066" useARA="0">
     <PLUGIN name="MIDI Output" descriptiveName="" format="Internal" category="I/O devices"
             manufacturer="JUCE" version="1.0" file="" uniqueId="9d5bbb00"
             isInstrument="0" fileTime="0" infoUpdateTime="0" numInputs="0"
@@ -61,10 +61,11 @@
       </OUTPUTS>
     </LAYOUT>
   </FILTER>
-  <FILTER uid="5" x="0.61375" y="0.4836065573770492" useARA="0">
+  <FILTER uid="7" x="0.5225" y="0.5" useARA="0" uiLastX_Normal="-170" uiLastY_Normal="-487"
+          uiopen_Normal="1">
     <PLUGIN name="SimpleEQ" format="VST3" category="Fx" manufacturer="yourcompany"
-            version="0.0.1" file="/Users/iljakoskin/Plugins/SimpleEQ/build/SimpleEQ_artefacts/Debug/VST3/SimpleEQ.vst3"
-            uniqueId="970487f5" isInstrument="0" fileTime="19fdad78298" infoUpdateTime="19fdc00c3f3"
+            version="0.0.1" file="/Users/iljakoskin/Plugins/SimpleEQ/build-xcode/SimpleEQ_artefacts/Debug/VST3/SimpleEQ.vst3"
+            uniqueId="970487f5" isInstrument="0" fileTime="19fdc700a91" infoUpdateTime="19fdd8130a5"
             numInputs="2" numOutputs="2" isShell="0" hasARAExtension="0"
             uid="83a6e647"/>
     <STATE>191.VMjLgXK....O+fWarAhckI2bo8la8HRLt.iHfTlai8FYo41Y8HRUTYTK3HxO9.BOVMEUy.Ea0cVZtMEcgQWY9vSRC8Vav8lak4Fc9XCLt3hKt3hKt3hKt3hYRUUSTEETIckVwTjQisVTTgkdEYjKAQjYPQSPWgUdMcjKAQjct3hdA4hKt3hKt3hKtnTUv.UQAslXuk0UXoWUFE0YQcEV77RRC8Vav8lak4Fc9vyKVMEUy.Ea0cVZtMEcgQWY9..</STATE>
@@ -77,14 +78,14 @@
       </OUTPUTS>
     </LAYOUT>
   </FILTER>
-  <FILTER uid="6" x="0.42875" y="0.2418032786885246" useARA="0" uiLastX_Normal="-55"
-          uiLastY_Normal="-838" uiopen_Normal="1">
+  <FILTER uid="8" x="0.40875" y="0.2602459016393442" useARA="0" uiLastX_Normal="-108"
+          uiLastY_Normal="-922" uiopen_Normal="1">
     <PLUGIN name="AUAudioFilePlayer" format="AudioUnit" category="Generator"
             manufacturer="Apple" version="1.6.0" file="AudioUnit:Generators/augn,afpl,appl"
-            uniqueId="6163676e" isInstrument="0" fileTime="0" infoUpdateTime="19fdc00c3f3"
+            uniqueId="6163676e" isInstrument="0" fileTime="0" infoUpdateTime="19fdd8130a5"
             numInputs="0" numOutputs="2" isShell="0" hasARAExtension="0"
             uid="6163676e"/>
-    <STATE>804.hAGaoMGcv.C1AHv.DTfAGfPBJrvHjThIovUag4VclE1XzUmbkIGUjEFcg8EDarVPUAkbkMWYzAUYxMWZyQWYtQ2TzEFcksTY4c0b0IFc4AWYWYWYxMWZu4FUzkGbk8EDOXVZrUVKxUlYkIWYtMVYyQkag0VYRDFbvwFPhxfFR2fCO.AVFkFak4TXsU1URU1Yo8lay8ED.8RUyUlby8RZroVXq81bqklauPTYysFcuA2KAwFaocVXz8lbfHDau8FYu.yMfDDark1YgQ2axAhPr81aj4RazDVnQPsDSPQEVbAFY3kTkcVZu4FQuU1bL81avokTkcVZu4FQgQWXeAADIM2TkwVYiQWYjIUYmk1atokTkcVZu4lSg0VYH7DDvA...........SCBQn.....................XiaTP..........f4k........7yI........A....TCK........................................yD...............fus.vS...PBZ4TY2AhTkcVZu41zM3vFbzAFdkzbSUFakMFckQlQowVYeAAUuT0bkI2bujFapE1ZuM2Zo41KDU1bqQ2av8hT04lao41YfPEZx8VcmgFHMkGHHUVXjARSogGSNARLtHCHME1bzUlbfHCMeQCMeIUQLUTPSUjKsA2Lg5A0RLAEUXAHXjABOAAb..........v...........zncNlB....X4fkfN.....BJqI9A.....oEE9V.....IAvcDQ54ggc.....J.........................................PSgMGc...........fptF.A....jPBRDlYvwFD.HQX0claReBJOvgUFkFakARLVYTZrUFHxfUUtQWZzwVYjA.B.jA.l.vJ.jD.QAPV.3E.vAPc.nG.6Afe.LH.LB.k.bM.YCf3.DO.7GvCAnQ.aDfiA7X.ZFPnA.q.GHPBBHg.SHfgBbn.HJPiB7n.TJPlB.p.mB.......HP..........nB..................H.r</STATE>
+    <STATE>804.hAGaoMGcv.C1AHv.DTfAGfPBJrvHjThIovUag4VclE1XzUmbkIGUjEFcg8EDarVPUAkbkMWYzAUYxMWZyQWYtQ2TzEFcksTY4c0b0IFc4AWYWYWYxMWZu4FUzkGbk8EDOXVZrUVKxUlYkIWYtMVYyQkag0VYRDFbvwFPhxfFR2fCO.AVFkFak4TXsU1URU1Yo8lay8EDT8RUyUlby8RZroVXq81bqklauPTYysFcuA2KRUmatklamABUnI2a0cFZfzTdffTYgQFHMkFdL4DHw3hLfzTXyQWYxAhLz7EMz7kTEwTQAMUQtzFbyDZDTKwDTTgEWfQFdIUYmk1atQzakMGSu8FbZIUYmk1atQTXzE1WP.QRyMUYrU1XzUFYRU1Yo8laZIUYmk1at4TXsUFBOAAb...........nSUkzJ.....................13FED..........P86MXXsJktOykZzvyRo4.d.....SVDxoC....................................v+++++...........fptF.+++++mfVNU1cfHUYmk1atMcCNrAGcfgWIM2TkwVYiQWYjYTZrU1WP.zKUMWYxM2KowlZgs1aysVZt8BQkM2Zz8FbuDDark1YgQ2axAhPr81aj8BL2.RPrwVZmEFcuIGHBw1auQlKsQSXg5A0RLAEUXAHXjABOAAb..........v............+xSsB....X4HsPD.....BJqI9A.....o0T1V.....mCv5.Wn.HbY.....J...........................................................3aK.A....jPBRDlYvwFD.HQX0claReBJOvgUFkFakARLVYTZrUFHxfUUtQWZzwVYjA.B.jA.l.vJ.jD.QAPV.3E.vAPc.nG.6Afe.LH.LB.k.rN.sCf8ATP.PDvHA3R.uDfnALZ.tFPsAPr.GHPBBHg.SHfgBbn.HJPiB7n.TJPlB.p.mB.......HP..........nB..................H.r</STATE>
     <LAYOUT>
       <INPUTS/>
       <OUTPUTS>
@@ -92,8 +93,8 @@
       </OUTPUTS>
     </LAYOUT>
   </FILTER>
-  <CONNECTION srcFilter="5" srcChannel="0" dstFilter="3" dstChannel="0"/>
-  <CONNECTION srcFilter="5" srcChannel="1" dstFilter="3" dstChannel="1"/>
-  <CONNECTION srcFilter="6" srcChannel="0" dstFilter="5" dstChannel="0"/>
-  <CONNECTION srcFilter="6" srcChannel="1" dstFilter="5" dstChannel="1"/>
+  <CONNECTION srcFilter="7" srcChannel="0" dstFilter="3" dstChannel="0"/>
+  <CONNECTION srcFilter="7" srcChannel="1" dstFilter="3" dstChannel="1"/>
+  <CONNECTION srcFilter="8" srcChannel="0" dstFilter="7" dstChannel="0"/>
+  <CONNECTION srcFilter="8" srcChannel="1" dstFilter="7" dstChannel="1"/>
 </FILTERGRAPH>
