@@ -21,11 +21,26 @@ highCutSlopeSliderAttachment(processorRef.apvts, "HighCut Slope", highCutSlopeSl
         addAndMakeVisible(comp);
     }
     
+    const auto& params = processorRef.getParameters();
+    
+    for (auto param : params) {
+        
+        param->addListener(this);
+    }
+    
+    startTimerHz(60);
+    
     setSize (600, 400);
 }
 
 AudioPluginAudioProcessorEditor::~AudioPluginAudioProcessorEditor()
 {
+    const auto& params = processorRef.getParameters();
+    
+    for (auto param : params) {
+        
+        param->removeListener(this);
+    }
 }
 
 //==============================================================================
@@ -150,7 +165,11 @@ void AudioPluginAudioProcessorEditor::timerCallback()
     if (parametersChanged.compareAndSetBool(false, true)) {
         
         // Update monochain
+        auto chainSettings = getChainSettings(processorRef.apvts);
+        auto peakCoefficients = makePeakFilter(chainSettings, processorRef.getSampleRate());
+        updateCoefficients(monoChain.get<ChainPositions::Peak>().coefficients, peakCoefficients);
         // signal a repaint
+        repaint();
     }
 }
 

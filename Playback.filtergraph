@@ -12,7 +12,7 @@
         <BUS index="0" layout="disabled"/>
       </INPUTS>
       <OUTPUTS>
-        <BUS index="0" layout="L R Ls Rs"/>
+        <BUS index="0" layout="C"/>
       </OUTPUTS>
     </LAYOUT>
   </FILTER>
@@ -34,7 +34,7 @@
   <FILTER uid="3" x="0.32875" y="0.8790983606557377" useARA="0">
     <PLUGIN name="Audio Output" descriptiveName="" format="Internal" category="I/O devices"
             manufacturer="JUCE" version="1.0" file="" uniqueId="724248cb"
-            isInstrument="0" fileTime="0" infoUpdateTime="0" numInputs="4"
+            isInstrument="0" fileTime="0" infoUpdateTime="0" numInputs="1"
             numOutputs="0" isShell="0" hasARAExtension="0" uid="724248cb"/>
     <STATE>0.</STATE>
     <LAYOUT>
@@ -65,7 +65,7 @@
           uiopen_Normal="1">
     <PLUGIN name="SimpleEQ" format="VST3" category="Fx" manufacturer="yourcompany"
             version="0.0.1" file="/Users/iljakoskin/Plugins/SimpleEQ/build-xcode/SimpleEQ_artefacts/Debug/VST3/SimpleEQ.vst3"
-            uniqueId="970487f5" isInstrument="0" fileTime="19fdc700a91" infoUpdateTime="19fe2d7bc72"
+            uniqueId="970487f5" isInstrument="0" fileTime="19fdc700a91" infoUpdateTime="19febdce758"
             numInputs="2" numOutputs="2" isShell="0" hasARAExtension="0"
             uid="83a6e647"/>
     <STATE>623.VMjLgXl....O+fWarAhckI2bo8la8HRLt.iHfTlai8FYo41Y8HRUTYTK3HxO9.BOVMEUy.Ea0cVZtMEcgQWY9vSRC8Vav8lak4Fc9LCNy3BTEwlXmAiUYoWUrIVdA4hKAIlKTETRUAUSAAkKBolQY4BQlMTQlQkVscVLPASTGgjQIcUV2EjYic1cVM1ZAAkKIAkKt3hKt3hKlMidtDjKTETRUAUSAAkKBolQY4BQ1MTQlQkVscVLPASTGgzT2ESX1UkQtDSQFEFLUYjKAolKA4hKt3hKt3hKt3hKt.UQpQUPvPjKAgDTZoVPP4RST4xT0MlLPASTGgjQIcUV2EjYic1cVM1ZAAkKIAkKt3hKt3hKtL1XtDjKTETRUAUSAAkKBolQY4BQlMTQ1oWXxzDUioWP3Qkb3XjXqEjYic1cVM1ZAAkKIAkKt3hKt3hKt3hKt3hKTETRUAUSAAkKBolQY4BQ1ITQtTUVmMmQHYTRWk0cAY1XmcmUisVPP4RRP4hKt3hKt3hKxblKA4BUAkTUP0TPP4hPpYTVtPjcBUjKUk0YyYDRGUjUZQWPlM1Y2Y0XqEDTtjDTt3hKt3hKt3hKt3hKtPUPIUETMEDTtHjZFkkKDY1PE4RUYc1bFgTTUcEVxslQiQSPlM1Y2Y0XqEDTtjDTt3hKt3hKt3hK2rhKt3hKt3hKt3hKt3haTU0PUQDU3sFaicVTWkEQEYzXmEDTtDDRTQlcEEiX4EDTtDDSt3xXt3hKt3hKt3hKlIUUMQUTPkzUZESQFM1ZQQEV5UjQ77RRC8Vav8lak4Fc9vyKVMEUy.Ea0cVZtMEcgQWY9..</STATE>
@@ -82,7 +82,7 @@
           uiLastY_Normal="-922" uiopen_Normal="1">
     <PLUGIN name="AUAudioFilePlayer" format="AudioUnit" category="Generator"
             manufacturer="Apple" version="1.6.0" file="AudioUnit:Generators/augn,afpl,appl"
-            uniqueId="6163676e" isInstrument="0" fileTime="0" infoUpdateTime="19fe2d7bc72"
+            uniqueId="6163676e" isInstrument="0" fileTime="0" infoUpdateTime="19febdce759"
             numInputs="0" numOutputs="2" isShell="0" hasARAExtension="0"
             uid="6163676e"/>
     <STATE>804.hAGaoMGcv.C1AHv.DTfAGfPBJrvHjThIovUag4VclE1XzUmbkIGUjEFcg8EDarVPUAkbkMWYzAUYxMWZyQWYtQ2TzEFcksTY4c0b0IFc4AWYWYWYxMWZu4FUzkGbk8EDOXVZrUVKxUlYkIWYtMVYyQkag0VYRDFbvwFPhxfFR2fCO.AVFkFak4TXsU1URU1Yo8lay8EDT8RUyUlby8RZroVXq81bqklauPTYysFcuA2KRUmatklamABUnI2a0cFZfzTdffTYgQFHMkFdL4DHw3hLfzTXyQWYxAhLz7EMz7kTEwTQAMUQtzFbyDZDTKwDTTgEWfQFdIUYmk1atQzakMGSu8FbZIUYmk1atQTXzE1WP.QRyMUYrU1XzUFYRU1Yo8laZIUYmk1at4TXsUFBOAAb...........nSUkzJ.....................13FED..........P86MXXsJktOykZzvyRo4.d.....SVDxoC....................................v+++++...........fptF.+++++mfVNU1cfHUYmk1atMcCNrAGcfgWIM2TkwVYiQWYjYTZrU1WP.zKUMWYxM2KowlZgs1aysVZt8BQkM2Zz8FbuDDark1YgQ2axAhPr81aj8BL2.RPrwVZmEFcuIGHBw1auQlKsQSXg5A0RLAEUXAHXjABOAAb..........v............+xSsB....X4HsPD.....BJqI9A.....o0T1V.....mCv5.Wn.HbY.....J...........................................................3aK.A....jPBRDlYvwFD.HQX0claReBJOvgUFkFakARLVYTZrUFHxfUUtQWZzwVYjA.B.jA.l.vJ.jD.QAPV.3E.vAPc.nG.6Afe.LH.LB.k.rN.sCf8ATP.PDvHA3R.uDfnALZ.tFPsAPr.GHPBBHg.SHfgBbn.HJPiB7n.TJPlB.p.mB.......HP..........nB..................H.r</STATE>
@@ -93,8 +93,44 @@
       </OUTPUTS>
     </LAYOUT>
   </FILTER>
+  <FILTER uid="9" x="0.59875" y="0.2479508196721311" useARA="0" uiLastX_Normal="47"
+          uiLastY_Normal="46" uiopen_Normal="1">
+    <PLUGIN name="AUAudioFilePlayer" format="AudioUnit" category="Generator"
+            manufacturer="Apple" version="1.6.0" file="AudioUnit:Generators/augn,afpl,appl"
+            uniqueId="6163676e" isInstrument="0" fileTime="0" infoUpdateTime="19febdce759"
+            numInputs="0" numOutputs="2" isShell="0" hasARAExtension="0"
+            uid="6163676e"/>
+    <STATE>137.hAGaoMGcv.i0AHv.DTfAGfPBJr.CT4VXsUFWsEla0YVXiQWcxUlbTQVXzEFUzkGbkc0b0IFc4AWYWYWYxMWZu4FVU4FcoQGakQlDgAGbrAjDgU2YtIQXlAGaP..BUnwIrDSNAozSPUkV........AD..........M....................vE</STATE>
+    <LAYOUT>
+      <INPUTS/>
+      <OUTPUTS>
+        <BUS index="0" layout="L R"/>
+      </OUTPUTS>
+    </LAYOUT>
+  </FILTER>
+  <FILTER uid="10" x="0.75125" y="0.5286885245901639" useARA="0" uiLastX_Normal="42"
+          uiLastY_Normal="431" uiopen_Normal="1">
+    <PLUGIN name="SimpleEQ" format="VST3" category="Fx" manufacturer="yourcompany"
+            version="0.0.1" file="/Users/iljakoskin/Plugins/SimpleEQ/build-xcode/SimpleEQ_artefacts/Debug/VST3/SimpleEQ.vst3"
+            uniqueId="970487f5" isInstrument="0" fileTime="19fdc700a91" infoUpdateTime="19febdce759"
+            numInputs="2" numOutputs="2" isShell="0" hasARAExtension="0"
+            uid="83a6e647"/>
+    <STATE>623.VMjLgXl....O+fWarAhckI2bo8la8HRLt.iHfTlai8FYo41Y8HRUTYTK3HxO9.BOVMEUy.Ea0cVZtMEcgQWY9vSRC8Vav8lak4Fc9LCNy3BTEwlXmAiUYoWUrIVdA4hKAIlKTETRUAUSAAkKBolQY4BQlMTQlQkVscVLPASTGgjQIcUV2EjYic1cVM1ZAAkKIAkKt3hKt3hKlMidtDjKTETRUAUSAAkKBolQY4BQ1MTQlQkVscVLPASTGgzT2ESX1UkQtDSQFEFLUYjKAolKA4hKt3hKt3hKt3hKt.UQpQUPvPjKAgDTZoVPP4RST4xT0MlLPASTGgjQIcUV2EjYic1cVM1ZAAkKIAkKt3hKt3hKt3RStDjKTETRUAUSAAkKBolQY4BQlMTQ1oWXxzDUioWP3Qkb3XjXqEjYic1cVM1ZAAkKIAkKt3hKt3hKt3hKt3hKTETRUAUSAAkKBolQY4BQ1ITQtTUVmMmQHYTRWk0cAY1XmcmUisVPP4RRP4hKt3hKt3hKxblKA4BUAkTUP0TPP4hPpYTVtPjcBUjKUk0YyYDRGUjUZQWPlM1Y2Y0XqEDTtjDTt3hKt3hKt3hKt3hKtPUPIUETMEDTtHjZFkkKDY1PE4RUYc1bFgTTUcEVxslQiQSPlM1Y2Y0XqEDTtjDTt3hKt3hKt3hK2rhKt3hKt3hKt3hKt3haTU0PUQDU3sFaicVTWkEQEYzXmEDTtDDRTQlcEEiX4EDTtDDSt3xXt3hKt3hKt3hKlIUUMQUTPkzUZESQFM1ZQQEV5UjQ77RRC8Vav8lak4Fc9vyKVMEUy.Ea0cVZtMEcgQWY9..</STATE>
+    <LAYOUT>
+      <INPUTS>
+        <BUS index="0" layout="L R"/>
+      </INPUTS>
+      <OUTPUTS>
+        <BUS index="0" layout="L R"/>
+      </OUTPUTS>
+    </LAYOUT>
+  </FILTER>
   <CONNECTION srcFilter="7" srcChannel="0" dstFilter="3" dstChannel="0"/>
   <CONNECTION srcFilter="7" srcChannel="1" dstFilter="3" dstChannel="1"/>
   <CONNECTION srcFilter="8" srcChannel="0" dstFilter="7" dstChannel="0"/>
   <CONNECTION srcFilter="8" srcChannel="1" dstFilter="7" dstChannel="1"/>
+  <CONNECTION srcFilter="9" srcChannel="0" dstFilter="10" dstChannel="0"/>
+  <CONNECTION srcFilter="9" srcChannel="1" dstFilter="10" dstChannel="1"/>
+  <CONNECTION srcFilter="10" srcChannel="0" dstFilter="3" dstChannel="0"/>
+  <CONNECTION srcFilter="10" srcChannel="1" dstFilter="3" dstChannel="1"/>
 </FILTERGRAPH>
