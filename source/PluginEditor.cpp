@@ -309,7 +309,7 @@ void ResponseCurveComponent::paint (juce::Graphics& g)
     const double outputMax = responseArea.getY();
     auto map = [outputMin, outputMax](double input)
     {
-        return jmap(input, -24.0, 24.0, outputMin, outputMax);
+        return jmap(jlimit(-24.0, 24.0, input), -24.0, 24.0, outputMin, outputMax);
     };
     
     responseCurve.startNewSubPath(responseArea.getX(), map(mags.front()));
@@ -320,9 +320,11 @@ void ResponseCurveComponent::paint (juce::Graphics& g)
     
     g.setColour(Colours::orange);
     g.drawRoundedRectangle(getRenderArea().toFloat(), 4.f, 1.f);
-    
+    g.saveState();
+    g.reduceClipRegion(responseArea);
     g.setColour(Colours::white);
     g.strokePath(responseCurve, PathStrokeType(2));
+    g.restoreState();
 }
 
 void ResponseCurveComponent::resized()
@@ -367,7 +369,7 @@ void ResponseCurveComponent::resized()
     
     Array<float> gain {
         
-        -24, 12, 0, 12, 24
+        -24, -12, 0, 12, 24
     };
     
     for (auto gDb : gain) {
@@ -409,11 +411,11 @@ void ResponseCurveComponent::resized()
         str << "Hz";
         
         juce::GlyphArrangement glyphs;
-
+        
         glyphs.addLineOfText(g.getCurrentFont(), str, 0.0f, 0.0f);
-
+        
         auto strWidth = glyphs.getBoundingBox(0, -1, false).getWidth();
-
+        
         Rectangle<float> r;
         r.setSize(strWidth, fontHeight);
         r.setCentre(x, 0);
@@ -422,7 +424,42 @@ void ResponseCurveComponent::resized()
                          r.toNearestInt(),
                          juce::Justification::centred,
                          1
-        );
+                         );
+    }
+    
+    for (auto gDb : gain) {
+        
+        auto y = jmap(gDb, -24.f, 24.f, float(bottom), float(top));
+        String str;
+        
+        if (gDb > 0) {
+            str << "+";
+        }
+        
+        str << gDb;
+        
+        juce::GlyphArrangement glyphs;
+        
+        glyphs.addLineOfText(g.getCurrentFont(), str, 0.0f, 0.0f);
+        
+        auto strWidth = glyphs.getBoundingBox(0, -1, false).getWidth();
+        
+        Rectangle<float> r;
+        r.setSize(strWidth, fontHeight);
+        r.setX(getWidth() - strWidth - 3);
+        r.setCentre(r.getCentreX(), y);
+        g.drawFittedText(str,
+                         r.toNearestInt(),
+                         juce::Justification::centred,
+                         1
+                         );
+        
+        g.setColour(gDb == 0 ? Colour(97u, 18u, 167u) : Colours::lightgrey);
+        g.drawFittedText(str,
+                         r.toNearestInt(),
+                         juce::Justification::centred,
+                         1
+                         );
     }
 }
 
