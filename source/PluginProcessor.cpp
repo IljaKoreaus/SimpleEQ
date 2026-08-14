@@ -99,7 +99,10 @@ void AudioPluginAudioProcessor::prepareToPlay (double sampleRate, int samplesPer
     
     // UPDATING GAIN, HIGH & LOW CUT VALUES AND SLOPES
     updateFilters();
-   
+
+    // PREPARING SPECTRUM ANALYZER
+    leftChannelFifo.prepare(samplesPerBlock);
+    rightChannelFifo.prepare(samplesPerBlock);
 }
 
 void AudioPluginAudioProcessor::releaseResources()
@@ -165,6 +168,11 @@ void AudioPluginAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
         juce::dsp::ProcessContextReplacing<float> rightContext(rightBlock);
         rightChain.process(rightContext);
     }
+    
+    
+    // UPDATE BUFFER INFO FOR SPECTRUM ANALYZER
+    leftChannelFifo.update(buffer);
+    rightChannelFifo.update(buffer);
 
 }
 
