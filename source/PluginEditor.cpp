@@ -275,11 +275,18 @@ void ResponseCurveComponent::timerCallback()
 void ResponseCurveComponent::updateChain() {
     
     // Update monochain
+    const auto sampleRate = processorRef.getSampleRate();
+    if (sampleRate <= 0.0)
+    {
+        parametersChanged.set(true);
+        return;
+    }
+
     auto chainSettings = getChainSettings(processorRef.apvts);
-    auto peakCoefficients = makePeakFilter(chainSettings, processorRef.getSampleRate());
+    auto peakCoefficients = makePeakFilter(chainSettings, sampleRate);
     updateCoefficients(monoChain.get<ChainPositions::Peak>().coefficients, peakCoefficients);
-    auto lowCutCoefficients = makeLowCutFilter(chainSettings, processorRef.getSampleRate());
-    auto highCutCoefficients = makeHighCutFilter(chainSettings, processorRef.getSampleRate());
+    auto lowCutCoefficients = makeLowCutFilter(chainSettings, sampleRate);
+    auto highCutCoefficients = makeHighCutFilter(chainSettings, sampleRate);
     updateCutFilter(monoChain.get<ChainPositions::LowCut>(), lowCutCoefficients, chainSettings.lowCutSlope);
     updateCutFilter(monoChain.get<ChainPositions::HighCut>(), highCutCoefficients, chainSettings.highCutSlope);
     
@@ -301,6 +308,12 @@ void ResponseCurveComponent::paint (juce::Graphics& g)
     auto& highcut = monoChain.get<ChainPositions::HighCut>();
     
     auto sampleRate = processorRef.getSampleRate();
+    if (sampleRate <= 0.0)
+    {
+        g.setColour(Colours::orange);
+        g.drawRoundedRectangle(getRenderArea().toFloat(), 4.f, 1.f);
+        return;
+    }
     
     std::vector<double> mags;
     
@@ -356,30 +369,32 @@ void ResponseCurveComponent::paint (juce::Graphics& g)
     // Drawing response curve
     Path responseCurve;
     
-    const double outputMin = responseArea.getBottom();
-    const double outputMax = responseArea.getY();
+    const double outputMin = responseArea.getHeight();
+    const double outputMax = 0.0;
     auto map = [outputMin, outputMax](double input)
     {
         return jmap(jlimit(-24.0, 24.0, input), -24.0, 24.0, outputMin, outputMax);
     };
     
-    responseCurve.startNewSubPath(responseArea.getX(), map(mags.front()));
+    responseCurve.startNewSubPath(0.0f, map(mags.front()));
     
     for (size_t i = 0; i < mags.size(); i++) {
-        responseCurve.lineTo(responseArea.getX() + i, map(mags[i]));
+        responseCurve.lineTo(static_cast<float>(i), map(mags[i]));
     }
     
     // PAINTING RESPONSE CURVE
-    g.setColour(Colours::rebeccapurple);
-    g.strokePath(leftChannelFFTPath, PathStrokeType(1.f));
-    
-    g.setColour(Colours::orange);
-    g.drawRoundedRectangle(getRenderArea().toFloat(), 4.f, 1.f);
+    const auto analysisAreaOffset = AffineTransform::translation(responseArea.getX(), responseArea.getY());
     g.saveState();
     g.reduceClipRegion(responseArea);
+    g.setColour(Colours::rebeccapurple);
+    g.strokePath(leftChannelFFTPath, PathStrokeType(1.f), analysisAreaOffset);
+    
     g.setColour(Colours::white);
-    g.strokePath(responseCurve, PathStrokeType(2));
+    g.strokePath(responseCurve, PathStrokeType(2), analysisAreaOffset);
     g.restoreState();
+
+    g.setColour(Colours::orange);
+    g.drawRoundedRectangle(getRenderArea().toFloat(), 4.f, 1.f);
 }
 
 void ResponseCurveComponent::resized()

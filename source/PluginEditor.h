@@ -99,9 +99,9 @@ struct AnalyzerPathGenerator
                       float binWidth,
                       float negativeInfinity)
     {
-        auto top = fftBounds.getY();
-        auto bottom = fftBounds.getHeight();
-        auto width = fftBounds.getWidth();
+        const auto top = 0.0f;
+        const auto bottom = fftBounds.getHeight();
+        const auto width = fftBounds.getWidth();
 
         int numBins = (int)fftSize / 2;
 
@@ -110,9 +110,9 @@ struct AnalyzerPathGenerator
 
         auto map = [bottom, top, negativeInfinity](float v)
         {
-            return juce::jmap(v,
+            return juce::jmap(juce::jlimit(negativeInfinity, 0.0f, v),
                               negativeInfinity, 0.f,
-                              float(bottom+10),   top);
+                              bottom, top);
         };
 
         auto y = map(renderData[0]);
@@ -134,7 +134,7 @@ struct AnalyzerPathGenerator
             if( !std::isnan(y) && !std::isinf(y) )
             {
                 auto binFreq = binNum * binWidth;
-                auto normalizedBinX = juce::mapFromLog10(binFreq, 20.f, 20000.f);
+                auto normalizedBinX = juce::jlimit(0.0f, 1.0f, juce::mapFromLog10(binFreq, 20.f, 20000.f));
                 int binX = std::floor(normalizedBinX * width);
                 p.lineTo(binX, y);
             }
