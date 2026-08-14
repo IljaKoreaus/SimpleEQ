@@ -103,6 +103,15 @@ void AudioPluginAudioProcessor::prepareToPlay (double sampleRate, int samplesPer
     // PREPARING SPECTRUM ANALYZER
     leftChannelFifo.prepare(samplesPerBlock);
     rightChannelFifo.prepare(samplesPerBlock);
+    
+    /*
+     BUG TESTS FOR FREQUENCY RESPONSE CURVE
+    osc.initialise([](float x) { return std::sin(x); });
+    
+    spec.numChannels = getTotalNumOutputChannels();
+    osc.prepare(spec);
+    osc.setFrequency(200);
+    */
 }
 
 void AudioPluginAudioProcessor::releaseResources()
@@ -157,6 +166,13 @@ void AudioPluginAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     updateFilters();
 
     juce::dsp::AudioBlock<float> block(buffer);
+    
+    // BUG TEST FOR FREQUENCY RESPONSE CURVE
+    /*
+    buffer.clear();
+    juce::dsp::ProcessContextReplacing<float> stereoContext(block);
+    osc.process(stereoContext);
+    */
     
     auto leftBlock = block.getSingleChannelBlock(0);
     juce::dsp::ProcessContextReplacing<float> leftContext(leftBlock);
