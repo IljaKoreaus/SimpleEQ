@@ -10,6 +10,10 @@ SimpleEQ features a real-time EQ response curve and FFT spectrum analyzer, with 
 
 Pre-built plugin versions are available through GitHub Releases.
 
+## Installation
+
+Download the latest MacOS release from Releases page and extract the ZIP file. Add the .component and .vst3 files to the appropriate audio plugin directories on your system.
+
 ## Features
 
 - Parametric EQ
