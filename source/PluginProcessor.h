@@ -84,9 +84,10 @@ struct SingleChannelSampleFifo
     
     void update(const BlockType& buffer)
     {
-        jassert(prepared.get());
-        jassert(buffer.getNumChannels() > channelToUse );
-        auto* channelPtr = buffer.getReadPointer(channelToUse);
+        if (! prepared.get() || buffer.getNumChannels() == 0)
+            return;
+        const auto channelIndex = juce::jmin(static_cast<int>(channelToUse), buffer.getNumChannels() - 1);
+        auto* channelPtr = buffer.getReadPointer(channelIndex);
         
         for( int i = 0; i < buffer.getNumSamples(); ++i )
         {

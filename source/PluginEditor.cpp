@@ -67,32 +67,57 @@ void LookAndFeel::drawToggleButton(juce::Graphics &g,
 {
     using namespace juce;
     
-    Path powerButton;
-    auto bounds = toggleButton.getLocalBounds();
-    auto size = jmin(bounds.getWidth(), bounds.getHeight() - 6);
-    auto r = bounds.withSizeKeepingCentre(size, size).toFloat();
-    
-    float ang = 30.f;
-    
-    powerButton.addCentredArc(r.getCentreX(), r.getCentreY(),
-                              size * 0.5,
-                              size * 0.5,
-                              0.f,
-                              degreesToRadians(ang),
-                              degreesToRadians(360-ang),
-                              true);
-    
-    powerButton.startNewSubPath(r.getCentreX(), r.getY());
-    powerButton.lineTo(r.getCentre());
-    
-    PathStrokeType pst(2.f, PathStrokeType::JointStyle::curved);
-    
-    auto colour = toggleButton.getToggleState() ? Colours::dimgrey : Colours::green;
-    
-    g.setColour(colour);
-    g.strokePath(powerButton, pst);
-    g.drawEllipse(r, 2);
-    
+    if (auto* pb = dynamic_cast<PowerButton*>(&toggleButton))
+    {
+        Path powerButton;
+        auto bounds = toggleButton.getLocalBounds();
+        auto size = jmin(bounds.getWidth(), bounds.getHeight() - 6);
+        auto r = bounds.withSizeKeepingCentre(size, size).toFloat();
+        
+        float ang = 30.f;
+        
+        powerButton.addCentredArc(r.getCentreX(), r.getCentreY(),
+                                  size * 0.5,
+                                  size * 0.5,
+                                  0.f,
+                                  degreesToRadians(ang),
+                                  degreesToRadians(360-ang),
+                                  true);
+        
+        powerButton.startNewSubPath(r.getCentreX(), r.getY());
+        powerButton.lineTo(r.getCentre());
+        
+        PathStrokeType pst(2.f, PathStrokeType::JointStyle::curved);
+        
+        auto colour = toggleButton.getToggleState() ? Colours::dimgrey : Colours::green;
+        
+        g.setColour(colour);
+        g.strokePath(powerButton, pst);
+        g.drawEllipse(r, 2);
+        
+    } else if (auto* analyzerButton = dynamic_cast<AnalyzerButton*>(&toggleButton)) {
+        
+        auto colour = ! toggleButton.getToggleState() ? Colours::dimgrey : Colours::green;
+        g.setColour(colour);
+        
+        auto bounds = toggleButton.getLocalBounds();
+        g.drawRect(bounds);
+        
+        auto insetRect = bounds.reduced(4);
+        
+        Path randomPath;
+        
+        Random r;
+        
+        randomPath.startNewSubPath(insetRect.getX(), insetRect.getY() + insetRect.getHeight() * r.nextFloat());
+        
+        for (auto x = insetRect.getX() + 1; x < insetRect.getRight(); x += 2)
+        {
+            randomPath.lineTo(x, insetRect.getY() + insetRect.getHeight() * r.nextFloat());
+        }
+        
+        g.strokePath(randomPath, PathStrokeType(1.f));
+    }
 }
 
 void RotaryWithLabels::paint(juce::Graphics& g)
@@ -244,6 +269,12 @@ void ResponseCurveComponent::parameterValueChanged(int parameterIndex, float new
 }
 
 void PathProducer::process(juce::Rectangle<float> fftBounds, double sampleRate) {
+
+    if (sampleRate <= 0.0 || fftBounds.isEmpty())
+        return;
+
+    if (sampleRate <= 0.0 || fftBounds.isEmpty())
+        return;
     
     // *** COORDINATING SCSF WITH FFT AND JUCE::PATH ***
     // SCSF
@@ -674,6 +705,7 @@ analyzerEnabledButtonAttachment(processorRef.apvts, "Analyzer Enabled", analyzer
     peakBypassButton.setLookAndFeel(&lnf);
     highCutBypassButton.setLookAndFeel(&lnf);
     lowCutBypassButton.setLookAndFeel(&lnf);
+    analyzerEnabledButton.setLookAndFeel(&lnf);
     
     setSize (600, 480);
 }
@@ -683,6 +715,7 @@ AudioPluginAudioProcessorEditor::~AudioPluginAudioProcessorEditor()
     peakBypassButton.setLookAndFeel(nullptr);
     highCutBypassButton.setLookAndFeel(nullptr);
     lowCutBypassButton.setLookAndFeel(nullptr);
+    analyzerEnabledButton.setLookAndFeel(nullptr);
 }
 
 //==============================================================================
@@ -698,6 +731,15 @@ void AudioPluginAudioProcessorEditor::resized()
     // This is generally where you'll want to lay out the positions of any
     // subcomponents in your editor..
     auto bounds = getLocalBounds();
+    
+    auto analyzerEnabledArea = bounds.removeFromTop(25);
+    analyzerEnabledArea.setWidth(100);
+    analyzerEnabledArea.setX(5);
+    analyzerEnabledArea.removeFromTop(2);
+    analyzerEnabledButton.setBounds(analyzerEnabledArea);
+    
+    bounds.removeFromTop(5);
+    
     float hRatio = 25.f / 100.f;
     auto responseArea = bounds.removeFromTop((bounds.getHeight() * hRatio));
     
