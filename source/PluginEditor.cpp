@@ -11,10 +11,13 @@ void LookAndFeel::drawRotarySlider (juce::Graphics& g,
     using namespace juce;
     
     auto bounds = Rectangle<float>(x, y, width, height);
-    g.setColour(Colour(97u, 18u, 167u));
+    
+    auto enabled = slider.isEnabled();
+    
+    g.setColour(enabled ? Colour(97u, 18u, 167u) : Colours::darkgrey);
     g.fillEllipse(bounds);
     
-    g.setColour(Colour(255u, 154u, 1u));
+    g.setColour(enabled ? Colour(255u, 154u, 1u) : Colours::grey);
     g.drawEllipse(bounds, 1.f);
     
     if (auto* rswl = dynamic_cast<RotaryWithLabels*>(&slider)) {
@@ -693,6 +696,41 @@ analyzerEnabledButtonAttachment(processorRef.apvts, "Analyzer Enabled", analyzer
     highCutBypassButton.setLookAndFeel(&lnf);
     lowCutBypassButton.setLookAndFeel(&lnf);
     analyzerEnabledButton.setLookAndFeel(&lnf);
+    
+    auto safePtr = juce::Component::SafePointer<AudioPluginAudioProcessorEditor>(this);
+    peakBypassButton.onClick = [safePtr]()
+    {
+        if (auto* comp = safePtr.getComponent()) {
+            
+            auto bypassed = comp->peakBypassButton.getToggleState();
+            
+            comp->peakFreqSlider.setEnabled( !bypassed );
+            comp->peakGainSlider.setEnabled( !bypassed );
+            comp->peakQualitySlider.setEnabled( !bypassed );
+        }
+    };
+    
+    lowCutBypassButton.onClick = [safePtr]()
+    {
+        if (auto* comp = safePtr.getComponent()) {
+            
+            auto bypassed = comp->lowCutBypassButton.getToggleState();
+            
+            comp->lowCutFreqSlider.setEnabled( !bypassed );
+            comp->lowCutSlopeSlider.setEnabled( !bypassed );
+        }
+    };
+    
+    highCutBypassButton.onClick = [safePtr]()
+    {
+        if (auto* comp = safePtr.getComponent()) {
+            
+            auto bypassed = comp->highCutBypassButton.getToggleState();
+            
+            comp->highCutFreqSlider.setEnabled( !bypassed );
+            comp->highCutSlopeSlider.setEnabled( !bypassed );
+        }
+    };
     
     setSize (600, 480);
 }
