@@ -341,7 +341,7 @@ void ResponseCurveComponent::paint (juce::Graphics& g)
             mag *= peak.coefficients->getMagnitudeForFrequency(freq, sampleRate);
         }
         
-        if (monoChain.isBypassed<ChainPositions::LowCut>()) {
+        if (!monoChain.isBypassed<ChainPositions::LowCut>()) {
             
             if (! lowcut.isBypassed<0>())
             {
@@ -361,7 +361,7 @@ void ResponseCurveComponent::paint (juce::Graphics& g)
             }
         }
         
-        if (monoChain.isBypassed<ChainPositions::HighCut>()) {
+        if (!monoChain.isBypassed<ChainPositions::HighCut>()) {
             
             if (! highcut.isBypassed<0>())
             {
@@ -601,9 +601,9 @@ lowCutFreqSliderAttachment(processorRef.apvts, "LowCut Freq", lowCutFreqSlider),
 highCutFreqSliderAttachment(processorRef.apvts, "HighCut Freq", highCutFreqSlider),
 lowCutSlopeSliderAttachment(processorRef.apvts, "LowCut Slope", lowCutSlopeSlider),
 highCutSlopeSliderAttachment(processorRef.apvts, "HighCut Slope", highCutSlopeSlider),
-lowCutBypassButtonAttachment(processorRef.apvts, "LowCut Bypass", lowCutBypassButton),
-highCutBypassButtonAttachment(processorRef.apvts, "HighCut Bypass", highCutBypassButton),
-peakBypassButtonAttachment(processorRef.apvts, "Peak Bypass", peakBypassButton),
+lowCutBypassButtonAttachment(processorRef.apvts, "LowCut Bypassed", lowCutBypassButton),
+highCutBypassButtonAttachment(processorRef.apvts, "HighCut Bypassed", highCutBypassButton),
+peakBypassButtonAttachment(processorRef.apvts, "Peak Bypassed", peakBypassButton),
 analyzerEnabledButtonAttachment(processorRef.apvts, "Analyzer Enabled", analyzerEnabledButton)
 {
     
