@@ -319,10 +319,14 @@ void ResponseCurveComponent::timerCallback()
 {
     
     // RESPONSE CURVE PROCESS
-    auto fftBounds = getAnalysisArea().toFloat();
-    auto sampleRate = processorRef.getSampleRate();
-    rightPathProducer.process(fftBounds, sampleRate);
-    leftPathProducer.process(fftBounds, sampleRate);
+    if (shouldShowFFTAnalysis) {
+     
+        auto fftBounds = getAnalysisArea().toFloat();
+        auto sampleRate = processorRef.getSampleRate();
+        rightPathProducer.process(fftBounds, sampleRate);
+        leftPathProducer.process(fftBounds, sampleRate);
+        
+    }
     
     if (parametersChanged.compareAndSetBool(false, true)) {
         
