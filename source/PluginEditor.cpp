@@ -265,6 +265,8 @@ void PathProducer::process(juce::Rectangle<float> fftBounds, double sampleRate) 
 
     if (sampleRate <= 0.0 || fftBounds.isEmpty())
         return;
+    if (sampleRate <= 0.0 || fftBounds.isEmpty())
+        return;
     
     // *** COORDINATING SCSF WITH FFT AND JUCE::PATH ***
     // SCSF
@@ -456,20 +458,23 @@ void ResponseCurveComponent::paint (juce::Graphics& g)
         responseCurve.lineTo(static_cast<float>(i), map(mags[i]));
     }
     
-    // PAINTING RESPONSE CURVE
-    auto leftChannelFFTPath = leftPathProducer.getPath();
-    auto rightChannelFFTPath = rightPathProducer.getPath();
     const auto analysisAreaOffset = AffineTransform::translation(responseArea.getX(), responseArea.getY());
-    g.saveState();
-    g.reduceClipRegion(responseArea);
-    g.setColour(Colours::rebeccapurple);
-    g.strokePath(leftChannelFFTPath, PathStrokeType(1.f), analysisAreaOffset);
-    g.setColour(Colours::red);
-    g.strokePath(rightChannelFFTPath, PathStrokeType(1.f), analysisAreaOffset);
+    
+    if (shouldShowFFTAnalysis) {
+        // PAINTING RESPONSE CURVE
+        auto leftChannelFFTPath = leftPathProducer.getPath();
+        auto rightChannelFFTPath = rightPathProducer.getPath();
+        g.saveState();
+        g.reduceClipRegion(responseArea);
+        g.setColour(Colours::rebeccapurple);
+        g.strokePath(leftChannelFFTPath, PathStrokeType(1.f), analysisAreaOffset);
+        g.setColour(Colours::red);
+        g.strokePath(rightChannelFFTPath, PathStrokeType(1.f), analysisAreaOffset);
+        g.restoreState();
+    }
     
     g.setColour(Colours::white);
     g.strokePath(responseCurve, PathStrokeType(2), analysisAreaOffset);
-    g.restoreState();
 
     g.setColour(Colours::orange);
     g.drawRoundedRectangle(getRenderArea().toFloat(), 4.f, 1.f);
@@ -729,6 +734,15 @@ analyzerEnabledButtonAttachment(processorRef.apvts, "Analyzer Enabled", analyzer
             
             comp->highCutFreqSlider.setEnabled( !bypassed );
             comp->highCutSlopeSlider.setEnabled( !bypassed );
+        }
+    };
+    
+    analyzerEnabledButton.onClick = [safePtr]()
+    {
+        if (auto* comp = safePtr.getComponent()) {
+            
+            auto enabled = comp->analyzerEnabledButton.getToggleState();
+            comp->responseCurveComponent.toggleAnalysisEnablement(enabled);
         }
     };
     
